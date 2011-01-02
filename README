@@ -1,0 +1,48 @@
+searchParser: Class to parse search term strings.
+version 0.5.0
+
+Marty Vance
+15 Oct 2010
+
+License: GNU GPL v2: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+This is a search string parser I started writing because I couldn't find one
+with the features I wanted.  It's not complete yet: see TODO below.
+
+Features:
+Support for unary operators (+/-).  Plus is always assumed if - is not
+present.
+
+Localized support for boolean operators (AND/OR).
+
+Support for field identifiers (title:foo).
+
+Localized support for quote and apostrophe characters.
+
+Constructor args:
+$q: array of quote characters
+$a: array of apostrophe characters
+$n: array of boolean AND operator strings
+$o: array of boolean OR operator strings
+
+Public methods:
+__get($name): returns the value of a member variable
+
+setString($string): takes a string as an arg.  Returns bool true if the
+arg is a string of > 0 length after parsing it, or returns false.
+
+dumpPhrases(): returns a formatted string of the elements found in the
+previously given search string.
+
+getWhere($fields): takes an array of database field identifiers and returns
+an SQL where clause suitable for use in queries.
+
+TODO:
+- Finish private function construct(): this is where the flat list of
+pieces assembled in parse() get nested into a structure more representavive
+of the user's intent.
+- Error/exception handling.
+- Support for unmatched (left/right) quote characters.
+- Default constructor arg values suitable for English (?).
+- Support for parethetical grouping.
+
